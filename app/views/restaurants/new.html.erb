@@ -1,0 +1,11 @@
+<div class="container">
+<h2 class="col-12 text-center">Add a new restaurant</h2>
+  <div class="form border border-dark p-1 rounded">
+    <%= simple_form_for @restaurant do |f| %>
+      <%= f.input :name %>
+      <%= f.input :address %>
+      <%= f.input :phone_number %>
+      <%= f.input :category %>
+    <% end %>
+  </div>
+</div>

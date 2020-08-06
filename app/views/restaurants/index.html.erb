@@ -1,0 +1,22 @@
+<div class="banner">
+  <div class="container">
+    <h2 class="text-center">Welcome to my Yelp App Mofos</h1>
+    <p class="text-center">The only reviews app you will ever need to use</p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Restaurants</h2>
+    <div class="cards d-flex justify-content-between">
+      <% @restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant) do %>
+          <div class="card p-2 border border-secondary m-1">
+              <h4><%= restaurant.name %></h4>
+              <p><%= restaurant.category %></p>
+              <p><%= restaurant.address %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <%= link_to 'Add a new restaurant', new_restaurant_path, class: "btn btn-secondary btn-lg mt-4" %>
+</div>
