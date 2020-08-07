@@ -4,11 +4,27 @@
     <h3><%= @restaurant.category %></h3>
     <h3><%= @restaurant.address %></h3>
   </div>
-  <div class="review-section mt-3">
-    <%= render 'forms/new_review' %>
-    </div>
+  <div class="reviews">
+    <ul>
+      <% @restaurant.reviews.each do |review| %>
+        <li>
+        <% count = 0 %>
+          <% 5.times do %>
+            <% if review.rating > count %>
+              <i class="fas fa-star"></i>
+            <% else %>
+              <i class="far fa-star"></i>
+            <% end %>
+            <% count += 1 %>
+          <% end %>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>  
+    </ul>
   </div>
+  <%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %>
 </div>
+
 
 
 

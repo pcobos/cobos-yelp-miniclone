@@ -16,10 +16,8 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-      flash[:success] = "Object successfully created"
       redirect_to @restaurant
     else
-      flash[:error] = "Something went wrong"
       render 'new'
     end
   end

@@ -1,7 +1,4 @@
 class ReviewsController < ApplicationController
-  def show
-    @review = Review.find(params[:id])
-  end
   
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
@@ -11,11 +8,10 @@ class ReviewsController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new(review_params)
+    @review.restaurant = @restaurant
     if @review.save
-      flash[:success] = "Boy, we did it"
-      redirect_to @review
+      redirect_to restaurant_path(@restaurant)
     else 
-      flash[:error] = "Houston, we have a problem"
       render 'new'
     end
   end
