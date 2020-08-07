@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @review = Review.new
   end
 
   def new
@@ -13,7 +14,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(params[:restaurant])
+    @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       flash[:success] = "Object successfully created"
       redirect_to @restaurant
@@ -21,6 +22,12 @@ class RestaurantsController < ApplicationController
       flash[:error] = "Something went wrong"
       render 'new'
     end
+  end
+
+  private 
+  
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address, :phone_number, :category)
   end
   
 end
